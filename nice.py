@@ -74,7 +74,13 @@ class AdditiveCoupling(nn.Module):
 
 class AffineCoupling(nn.Module):
     def __init__(self, in_out_dim, mid_dim, hidden, mask_config):
-        """Initialize an affine coupling layer."""
+        """Initialize an affine coupling layer.
+        Args:
+            in_out_dim: input/output dimensions.
+            mid_dim: number of units in a hidden layer.
+            hidden: number of hidden layers.
+            mask_config: 1 if transform odd units, 0 if transform even units.
+        """
         super(AffineCoupling, self).__init__()
         self.mask_config = mask_config
         self.in_net = nn.Sequential(nn.Linear(in_out_dim//2, mid_dim), nn.ReLU())
